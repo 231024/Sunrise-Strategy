@@ -10,6 +10,8 @@ public class TimerCoroutine : MonoBehaviour
    
     private bool _isTimerPlaying;
     private string _timePlayingFormat;
+    private string _endTimer = $"Game Over";
+    private string _startTimer = $"Start Game";
     private TimeSpan _timePlaying;
  
     private Coroutine _coroutineTimer;
@@ -17,7 +19,7 @@ public class TimerCoroutine : MonoBehaviour
     private void Start()
     {
         _isTimerPlaying = false;
-        _timerTxt.text = "00:00";
+        _timerTxt.text = _startTimer;
         
         BeginTimer();
     }
@@ -28,6 +30,8 @@ public class TimerCoroutine : MonoBehaviour
         {
             _isTimerPlaying = false;
             StopCoroutine(_coroutineTimer);
+            _timerTxt.text = _endTimer;
+            _timerTxt.color = Color.red;
         }
     }
 
