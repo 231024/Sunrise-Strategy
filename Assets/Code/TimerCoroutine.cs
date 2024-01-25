@@ -17,7 +17,7 @@ public class TimerCoroutine : MonoBehaviour
     private void Start()
     {
         _isTimerPlaying = false;
-        _timerTxt.text = "00:00.0";
+        _timerTxt.text = "00:00";
         
         BeginTimer();
     }
@@ -44,12 +44,12 @@ public class TimerCoroutine : MonoBehaviour
  
     private IEnumerator UpdateTimer()
     {
-        while (_isTimerPlaying)
+        while (_isTimerPlaying && _valueInSecondsForTheTimer >= 0f)
         {
             _valueInSecondsForTheTimer -= Time.deltaTime;
            
             _timePlaying = TimeSpan.FromSeconds(_valueInSecondsForTheTimer);
-            _timePlayingFormat = _timePlaying.ToString("mm':'ss'.'f");
+            _timePlayingFormat = _timePlaying.ToString("mm':'ss");
             _timerTxt.text = _timePlayingFormat;
            
             yield return null;
